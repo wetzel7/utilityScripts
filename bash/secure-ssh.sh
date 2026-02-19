@@ -4,6 +4,10 @@
 # adds a public key from local repo or curled from remote repo
 # removes root ability to ssh in
 
+# USAGE: generate ssh key pair on machine one and push the public key to repo or curl the key to machine two
+# then run this script to create the user to ssh into on the machine with the public key
+# allowing for passwordless SSH from machine one to machine two
+
 #!/bin/bash
 
 # username provided check
@@ -20,7 +24,7 @@ sudo useradd -m -d /home/$USERNAME -s /bin/bash "$USERNAME"
 # make ssh dir
 sudo mkdir /home/$USERNAME/.ssh
 
-# copy key
+# copy key (directories would be subject to change as this is copied from an old course project)
 sudo cp $HOME/SYS-265-Logan-S/linux/public-keys/id_rsa.pub /home/$USERNAME/.ssh/authorized_keys
 
 #set perms
