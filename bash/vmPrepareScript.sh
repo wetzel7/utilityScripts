@@ -15,8 +15,12 @@ USERNAME=$1
 HOSTNAME=$2
 
 # user creation
-sudo useradd -m -d /home/"$USERNAME" -s /bin/bash "$USERNAME"
-sudo passwd $USERNAME
+if id "$USERNAME" &>/dev/null; then
+    echo "User $USERNAME exists."
+else
+    sudo useradd -m -d /home/"$USERNAME" -s /bin/bash "$USERNAME"
+	sudo passwd $USERNAME
+fi
 
 # user elevation dependant on OS
 if grep -qi "ubuntu\|debian" /etc/os-release; then
