@@ -60,5 +60,5 @@ else
 	sudo nmtui
 
 fi
-
+echo "Reboot for hostname changes to take effect."
 exit 0
