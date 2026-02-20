@@ -9,6 +9,7 @@
 # Variables provided check
 if [ -z "$1" ] || [ -z "$2" ]; then
 	echo "Usage: $0 <username> <hostname>"
+fi
 
 USERNAME=$1
 HOSTNAME=$2
@@ -46,3 +47,4 @@ else
 
 fi
 
+exit 0
