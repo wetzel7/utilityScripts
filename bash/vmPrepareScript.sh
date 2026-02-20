@@ -28,7 +28,6 @@ if grep -qi "ubuntu\|debian" /etc/os-release; then
 else
 	SUDO_GROUP="wheel"
 fi
-
 sudo usermod -aG "$SUDO_GROUP" "$USERNAME" 
 
 # hostname set
@@ -36,15 +35,24 @@ sudo hostnamectl set-hostname "$HOSTNAME"
 
 # ubuntu detection for IP things
 if grep -qi "ubuntu\|debian" /etc/os-release; then
+	# Backups for netplan directory YAMLs
 	BACKUP_DIR="/etc/netplan/backups/$(date +%Y%m%d_%H%M%S)"
 	mkdir -p "$BACKUP_DIR"
 	cp /etc/netplan/*.yaml "$BACKUP_DIR/"
-
 	# modify netplan file
 	NETPLAN_FILE=$(ls /etc/netplan/*.yaml | head -1)
-	sudo vi "$NETPLAN_FILE"
-	sudo netplan apply
 
+	while true; do
+		sudo vi "$NETPLAN_FILE"
+		if sudo netplan try; then
+			echo "config GUD"
+			sudo netplan apply
+			break
+		else
+			echo "netplan borked kid, try again"
+		fi
+	done
+	
 else
 	# rocky open nmtui for network config
 	sudo nmtui
