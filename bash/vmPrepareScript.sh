@@ -51,6 +51,7 @@ if grep -qi "ubuntu\|debian" /etc/os-release; then
 			break
 		else
 			echo "netplan borked kid, try again"
+			sleep 5
 		fi
 	done
 	
