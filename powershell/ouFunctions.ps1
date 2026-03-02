@@ -1,4 +1,9 @@
-﻿Write-Host "This is a menu script to create and delete Organization Units, as well as Move Objects"
+﻿# Author: Logan Savage
+# Class: SYS-265, Champlain College
+# Yo, I made this
+# :)
+
+Write-Host "This is a menu script to create and delete Organization Units, as well as Move Objects"
 $Prompt = "Choose a Menu Item to proceed:`n"
 $Prompt += "1 - Add an OU`n"
 $Prompt += "2 - Delete an OU`n"
